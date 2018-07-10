@@ -1,0 +1,63 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[10pt]{book} 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+%\graphicspath{ {figs/} }
+\usepackage{mathpazo} % Use the Palatino font by default (Ricardo)
+\usepackage[onehalfspacing]{setspace}
+\usepackage[a4paper, width=154mm, top=33mm, bottom=33mm, bindingoffset=6mm]{geometry}
+\RequirePackage{caption} % Required for custommising the captions
+\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=40pt}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    citecolor=blue,    
+}
+\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+
+% Bibliography
+\usepackage[square, numbers]{natbib}
+ 
+% Agregados por el usuario
+\usepackage{amssymb,amsmath}
+\usepackage[only,Yup]{stmaryrd} % El símbolo de la estrella
+\usepackage{bibentry} % Para poner las referencias en la intro
+\usepackage[section]{placeins}
+\nobibliography*
+
+\title{
+	{\href{http://www.itba.edu.ar}{\textsc{Instituto Tecnológico de Buenos Aires}}}\\
+	\vspace*{1\baselineskip}
+	{\includegraphics[height=30mm]{figs/logo_itba.png}}\\
+	{\large \textsc{Tesis Doctoral}}\\
+	\vspace*{1\baselineskip}
+	{Título de Tesis}\\
+	\vspace*{1\baselineskip}
+	{Director/a: Dr./Dra. Nombre \textsc{Apellido}\\Co-Director/a: Dr./Dra. Nombre \textsc{Apellido}}
+}
+\author{Ing. Autor de la Tesis}
+\date{20xx}
+
+\frontmatter
+\begin{document}
+\maketitle
+\tableofcontents 
+\listoffigures
+\mainmatter
+\pagenumbering{arabic}
+\include{chapters/chapter1}
+%\include{chapters/chapter2}
+%\include{chapters/chapter3}
+
+\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+\include{appendices/appendix1}
+%\include{appendices/appendix2}
+
+\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+\end{document}  
