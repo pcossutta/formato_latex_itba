@@ -1,13 +1,14 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[10pt]{book} 
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}			% Required for inputting international characters
+\usepackage[T1]{fontenc}				% Output font encoding for international characters
 \usepackage{graphicx}
 %\graphicspath{ {figs/} }
-\usepackage{mathpazo} % Use the Palatino font by default (Ricardo)
+\usepackage{mathpazo} 				% Use the Palatino font by default (Ricardo)
 \usepackage[onehalfspacing]{setspace}
 \usepackage[a4paper, width=154mm, top=33mm, bottom=33mm, bindingoffset=6mm]{geometry}
-\RequirePackage{caption} % Required for custommising the captions
-\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=40pt}
+\RequirePackage{caption} 			% Required for customising the captions
+\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -17,18 +18,16 @@
     citecolor=blue,    
 }
 \usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
-%\usepackage{fancyhdr}
+%\usepackage{fancyhdr}				% Falta configurarlo bien
 %\pagestyle{fancy}
-
-% Bibliography
-\usepackage[square, numbers]{natbib}
+\usepackage[square, numbers]{natbib}	% Bibliography
  
 % Agregados por el usuario
 \usepackage{amssymb,amsmath}
-\usepackage[only,Yup]{stmaryrd} % El símbolo de la estrella
-\usepackage{bibentry} % Para poner las referencias en la intro
-\usepackage[section]{placeins}
-\nobibliography*
+\usepackage[only,Yup]{stmaryrd} 		% El símbolo de la estrella
+\usepackage{bibentry} 				% Para poner las referencias en la intro
+\usepackage[section]{placeins}			% Para que termine de colocar las figuras cuando finaliza un capítulo
+\nobibliography*					% Sino no anda la bibliografía
 
 \title{
 	{\href{http://www.itba.edu.ar}{\textsc{Instituto Tecnológico de Buenos Aires}}}\\
@@ -47,7 +46,20 @@
 \begin{document}
 \maketitle
 \tableofcontents 
-\listoffigures
+\listoffigures			% Listado de Figuras
+\listoftables			% Listado de Tablas
+
+\chapter*{Abreviaturas}
+% Si se pasa de una hoja usar longtables
+\begin{table}[htb]
+	\large
+	\begin{tabular}{l l}
+		ITBA & \textbf{I}nstituto \textbf{T}ecnológico de \textbf{B}uenos \textbf{A}ires \\
+		MIT & \textbf{M}assachusetts \textbf{I}nstitute of \textbf{T}echnology, Instituto Tecnológico de Massachusetts \\
+		Cap. & \textbf{C}apítulo
+	\end{tabular}
+\end{table}
+
 \mainmatter
 \pagenumbering{arabic}
 \include{chapters/chapter1}
@@ -60,4 +72,5 @@
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
+
 \end{document}  
