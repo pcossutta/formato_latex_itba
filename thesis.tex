@@ -2,26 +2,19 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[10pt]{book} 
 \usepackage[T1]{fontenc}			% Output font encoding for international characters
-\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
 \usepackage{fontspec}
-%\setmainfont{Avenir Next} En OSX con esto solo alcanza
-\setmainfont{avenirnext}[
-  Path = ./figs/ ,
+\setmainfont{avenirnext.ttc}[
   UprightFeatures    = {FontIndex=7} ,
   BoldFeatures       = {FontIndex=5} ,
   ItalicFeatures     = {FontIndex=4},
   BoldItalicFeatures = {FontIndex=6} ,
 ]
-% 0 BOLD - 1 BOLD ITALIC - 2 SEMI BOLD
-% 3 SEMI BOLD ITALIC - 4 ITALIC - 5 MEDIUM - 6 MEDIUM ITALIC
-% 7 NORMAL - 8 Heavy - 9 Heavy Italic
-% 10 Ultraligth - 11 ultralight italic
-
+% 0 bold - 1 bold it - 2 semi bold - 3 semi bold it - 4 it - 5 medium - 6 medium it - 7 normal - 8 heavy - 9 heavy italic - 10 ultralight - 11 ultralight it
 \usepackage{graphicx}
 %\graphicspath{ {figs/} }
 \usepackage[onehalfspacing]{setspace}
 \usepackage[a4paper, width=154mm, top=33mm, bottom=33mm, bindingoffset=6mm]{geometry}
-\RequirePackage{caption} 			% Required for customising the captions
+\RequirePackage{caption} 		% Required for customising the captions
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
 \usepackage{hyperref}
 \hypersetup{
@@ -31,6 +24,7 @@
     urlcolor=blue,
     citecolor=blue,    
 }
+\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
 %\usepackage{fancyhdr}				% Falta configurarlo bien
 \usepackage[square, numbers]{natbib}	% Bibliography
 \usepackage{tikz}					% Para poder dibujar el recuadro de la página del título
@@ -91,8 +85,7 @@
 
 \chapter*{Abreviaturas}
 \addcontentsline{toc}{chapter}{Abreviaturas}
-% Si se pasa de una hoja usar longtables
-\begin{table}[htb]
+\begin{table}[htb] 		% Si se pasa de una hoja usar longtables
 	\large
 	\begin{tabular}{l l}
 		ITBA & \textbf{I}nstituto \textbf{T}ecnológico de \textbf{B}uenos \textbf{A}ires \\
@@ -115,4 +108,5 @@
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
 \addcontentsline{toc}{chapter}{\bibname}    %Agrega bibliografía al índice
+
 \end{document}  
