@@ -36,6 +36,10 @@
 \usepackage[section]{placeins}			% Para que termine de colocar las figuras cuando finaliza un capítulo
 \nobibliography*					% Sino no anda la bibliografía
 
+\newcommand\textbox[1]{%
+  \parbox{.333\textwidth}{#1}%
+}
+
 \frontmatter
 \begin{document}
 %
@@ -49,31 +53,39 @@
 		    ([xshift=1.6cm, yshift=-1.6cm]current page.north west);
 		\coordinate (bottom_right) at 
 		    ([xshift=-1.6cm, yshift=1.6cm]current page.south east);
-		\node[inner sep=0, anchor=north east] at (top_right) {\includegraphics[height=19mm, trim={180 200 200 200}, clip]{figs/logo_itba.png}};
+		\node[inner sep=0, anchor=north east] at (top_right) {\href{http://www.itba.edu.ar}{\includegraphics[height=19mm, trim={180 200 200 200}, clip]{figs/logo_itba.png}}};
 		\draw[double, line width = 0.5pt] (top_left) rectangle (bottom_right);
 	\end{tikzpicture}
 	\onehalfspacing
 	\par
 	\begin{large}
-		\noindent \href{http://www.itba.edu.ar}{\color{black}{\textbf{INSTITUTO TECNOLÓGICO DE BUENOS AIRES}}}\par
-		\noindent \textbf{DEPARTAMENTO DE DOCTORADO}\par
-		\vspace{4cm}
+		\vspace{0.2cm}
+		\noindent \textbf{DEPARTAMENTO DE INVESTIGACIÓN Y DOCTORADO}\par
+		\vspace{3cm}
 		\begin{center}
 			{\Huge \textbf{TÍTULO DEL TRABAJO}\par}
 			{\Huge \textbf{Subtítulo del trabajo (si lo hubiere)}\par}
 		\end{center}
-		\vspace{3.2cm}
+		\vspace{3cm}
 		\noindent \textbf{AUTOR:} Ing. Nombre \textsc{Apellido}\par
 		\vspace{0.5cm}
 		\noindent \textbf{DIRECTOR:} Dr./Dra. Nombre \textsc{Apellido}\par
 		\noindent \textbf{CO-DIRECTOR:} Dr./Dra. Nombre \textsc{Apellido}\par	
-		\vspace{3cm}
+		\vspace{2cm}
 		\noindent{TESIS PRESENTADA PARA LA OBTENCIÓN DEL TÍTULO DE}\par
-		\noindent\textbf{DOCTOR EN INGENIERÍA / informática}\par
+		\noindent\textbf{DOCTOR EN INGENIERÍA / INGENIERÍA INFORMÁTICA}\par
+		\vspace{2cm}
+		\noindent\textbf{Comité evaluador}\par
+		\begin{normalsize}		
+			\noindent
+			\textbox{Dr./Dra. Nombre \textsc{Apellido} \hfill}
+			\textbox{\hfil Dr./Dra. Nombre \textsc{Apellido} \hfil}
+			\textbox{\hfill Dr./Dra. Nombre \textsc{Apellido} }
+		\end{normalsize}		
 		\vfill
 		\begin{center}
-			\textbf{BUENOS AIRES}\\
-			\textbf{PRIMER / SEGUNDO CUATRIMESTRE, 2018}
+			\textbf{CIUDAD AUTÓNOMA DE BUENOS AIRES}\\
+			\textbf{MES, AÑO}
 		\end{center}
 	\end{large}
 \end{titlepage}
