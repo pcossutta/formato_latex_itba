@@ -2,6 +2,8 @@
 \documentclass[10pt]{book} 
 \usepackage[utf8]{inputenc}			% Required for inputting international characters
 \usepackage[T1]{fontenc}			% Output font encoding for international characters
+%\usepackage[no-math]{fontspec}    
+%\setmainfont{Avenir}
 \usepackage{graphicx}
 %\graphicspath{ {figs/} }
 \usepackage{mathpazo} 				% Use the Palatino font by default (Ricardo)
@@ -18,7 +20,7 @@
     citecolor=blue,    
 }
 \usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
-\usepackage{fancyhdr}				% Falta configurarlo bien
+%\usepackage{fancyhdr}				% Falta configurarlo bien
 \usepackage[square, numbers]{natbib}		% Bibliography
 \usepackage{tikz}					% Para poder dibujar el recuadro de la página del título
 \usetikzlibrary{babel}				% tikz no funciona con babel si no se indica
@@ -30,30 +32,20 @@
 \usepackage[section]{placeins}			% Para que termine de colocar las figuras cuando finaliza un capítulo
 \nobibliography*					% Sino no anda la bibliografía
 
-\title{
-	{\href{http://www.itba.edu.ar}{\textsc{Instituto Tecnológico de Buenos Aires}}}\\
-	\vspace*{1\baselineskip}
-	{\includegraphics[height=30mm]{figs/logo_itba.png}}\\
-	{\large \textsc{Tesis Doctoral}}\\
-	\vspace*{1\baselineskip}
-	{Título de Tesis}\\
-	\vspace*{1\baselineskip}
-	{Director/a: Dr./Dra. Nombre \textsc{Apellido}\\Co-Director/a: Dr./Dra. Nombre \textsc{Apellido}}
-}
-\author{Ing. Autor de la Tesis}
-\date{20xx}
-
-
 \frontmatter
 \begin{document}
 %
 \begin{titlepage}
-	% Si algo hay que sacar pq no existe, ponerlo oentre \phantom{...} para que respete la ubicación de las cosas
+	% Si algo hay que sacar porque no existe, ponerlo entre \phantom{...} 
+	% para que respete la ubicación de las cosas
 	\begin{tikzpicture}[remember picture, overlay]
-		\coordinate (top_right) at ([xshift=-2.5cm, yshift=-2.5cm]current page.north east);
-		\coordinate (top_left) at ([xshift=1.6cm, yshift=-1.6cm]current page.north west);
-		\coordinate (bottom_right) at ([xshift=-1.6cm, yshift=1.6cm]current page.south east);
-		\node[inner sep=0, anchor=north east] at (top_right) {\includegraphics[height=19mm, trim={180 200 200 200}, clip]{figs/logo_itba.png}};		
+		\coordinate (top_right) at 
+		    ([xshift=-2.5cm, yshift=-2.5cm]current page.north east);
+		\coordinate (top_left) at 
+		    ([xshift=1.6cm, yshift=-1.6cm]current page.north west);
+		\coordinate (bottom_right) at 
+		    ([xshift=-1.6cm, yshift=1.6cm]current page.south east);
+		\node[inner sep=0, anchor=north east] at (top_right) {\includegraphics[height=19mm, trim={180 200 200 200}, clip]{figs/logo_itba.png}};
 		\draw[double, line width = 0.5pt] (top_left) rectangle (bottom_right);
 	\end{tikzpicture}
 	\onehalfspacing
@@ -100,18 +92,18 @@
 \end{table}
 
 \mainmatter
-\pagestyle{fancy}
+%\pagestyle{fancy}
 \pagenumbering{arabic}
 \include{chapters/chapter1}
 %\include{chapters/chapter2}
 %\include{chapters/chapter3}
 
-\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+\appendix % Los próximos "chapters" son Apéndices
 \include{appendices/appendix1}
 %\include{appendices/appendix2}
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
-\addcontentsline{toc}{chapter}{\bibname}
+\addcontentsline{toc}{chapter}{\bibname}    %Agrega bibliografía al índice
 
 \end{document}  
