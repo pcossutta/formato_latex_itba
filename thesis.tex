@@ -36,6 +36,11 @@
 \usepackage[section]{placeins}			% Para que termine de colocar las figuras cuando finaliza un capítulo
 \nobibliography*					% Sino no anda la bibliografía
 
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\huge}{\vspace{-3cm}\hfill \textbf{\chaptertitlename\ \thechapter}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt]}]
+
+\titleformat{name=\chapter,numberless}[display]{\huge}{\vspace{-3cm}\vspace{-1ex}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt]}]
+
 \newcommand\textbox[1]{%
   \parbox{.333\textwidth}{#1}%
 }
@@ -110,6 +115,12 @@
 %\pagestyle{fancy}
 \pagenumbering{arabic}
 \include{chapters/chapter1}
+\meaning\maketitle
+\\
+El de adentro:\\
+\makeatletter
+\meaning\HyOrg@maketitle
+\makeatother
 %\include{chapters/chapter2}
 %\include{chapters/chapter3}
 
