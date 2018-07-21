@@ -3,13 +3,13 @@
 \documentclass[10pt]{book} 
 \usepackage[T1]{fontenc}			% Output font encoding for international characters
 \usepackage{fontspec}
-\setmainfont{avenirnext.ttc}[
-  UprightFeatures    = {FontIndex=7} ,
-  BoldFeatures       = {FontIndex=5} ,
-  ItalicFeatures     = {FontIndex=4},
-  BoldItalicFeatures = {FontIndex=6} ,
-]
-% 0 bold - 1 bold it - 2 semi bold - 3 semi bold it - 4 it - 5 medium - 6 medium it - 7 normal - 8 heavy - 9 heavy italic - 10 ultralight - 11 ultralight it
+
+% Font: Es diferente en Overleaf y en la PC ya que en Overleaf no está instalada la fuente (porque es paga) y hay que subir el archivo con la fuente. En una PC si la fuente Avenir está instalada se puede usar cualquier método.
+% Esto para Overleaf, índices: 0 Bold - 1 Bold it - 2 Demi Bold - 3 Demi Bold It - 4 it - 5 Medium - 6 Medium It - 7 Regular - 8 Heavy - 9 Heavy It - 10 Ultralight - 11 Ultralight It
+\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7}, BoldFeatures={FontIndex=5}, ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
+% Esto en una PC con Windows/OSX o Linux
+%\setmainfont{Avenir Next}[ UprightFont=* Regular, ItalicFont=* Italic, BoldFont=* Medium, BoldItalicFont=* Medium Italic]
+
 \usepackage{graphicx}
 %\graphicspath{ {figs/} }
 \usepackage[onehalfspacing]{setspace}
