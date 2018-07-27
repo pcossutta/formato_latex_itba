@@ -1,19 +1,21 @@
 % !TEX TS-program = LuaLaTeX
 % !TEX encoding = UTF-8 Unicode
 \documentclass[10pt]{book} 
-\usepackage[T1]{fontenc}			% Output font encoding for international characters
-\usepackage{fontspec}
-
+%\usepackage{sansmathfonts}
+\renewcommand*\familydefault{\sfdefault} 	% Only if the base font of the document is to be sans serif
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}				% Output font encoding for international characters
+%\usepackage{fontspec}
 % Font: Es diferente en Overleaf y en la PC ya que en Overleaf no está instalada la fuente (porque es paga) y hay que subir el archivo con la fuente. En una PC si la fuente Avenir está instalada se puede usar cualquier método.
 % Esto para Overleaf, índices: 0 Bold - 1 Bold it - 2 Demi Bold - 3 Demi Bold It - 4 it - 5 Medium - 6 Medium It - 7 Regular - 8 Heavy - 9 Heavy It - 10 Ultralight - 11 Ultralight It
-\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7}, BoldFeatures={FontIndex=5}, ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
+%\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7}, BoldFeatures={FontIndex=5}, ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
 % Esto en una PC con Windows/OSX o Linux
 %\setmainfont{Avenir Next}[ UprightFont=* Regular, ItalicFont=* Italic, BoldFont=* Medium, BoldItalicFont=* Medium Italic]
 
 \usepackage{graphicx}
 %\graphicspath{ {figs/} }
 \usepackage[onehalfspacing]{setspace}
-\usepackage[a4paper, width=154mm, top=33mm, bottom=33mm, bindingoffset=6mm]{geometry}
+\usepackage[a4paper, bindingoffset=0.5cm,margin=2.5cm]{geometry}
 \RequirePackage{caption} 		% Required for customising the captions
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
 \usepackage{hyperref}
@@ -26,6 +28,7 @@
 }
 \usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
 %\usepackage{fancyhdr}				% Falta configurarlo bien
+
 \usepackage[square, numbers]{natbib}	% Bibliography
 \usepackage{tikz}					% Para poder dibujar el recuadro de la página del título
 \usetikzlibrary{babel}					% tikz no funciona con babel si no se indica
@@ -37,9 +40,9 @@
 \nobibliography*					% Sino no anda la bibliografía
 
 \usepackage{titlesec}
-\titleformat{\chapter}[display]{\huge}{\vspace{-3cm}\hfill \textbf{\chaptertitlename\ \thechapter}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt]}]
+\titleformat{\chapter}[display]{\huge}{\vspace{-1.5cm}\hfill \textbf{\chaptertitlename\ \thechapter}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt] }]
 
-\titleformat{name=\chapter,numberless}[display]{\huge}{\vspace{-3cm}\vspace{-1ex}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt]}]
+\titleformat{name=\chapter,numberless}[display]{\huge}{\vspace{-1.5cm}\vspace{-1ex}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt]}]
 
 \newcommand\textbox[1]{%
   \parbox{.333\textwidth}{#1}%
