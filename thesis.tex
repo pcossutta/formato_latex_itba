@@ -4,20 +4,20 @@
 % Setup of packages used
 \usepackage[onehalfspacing]{setspace}		% One half spacing
 \usepackage[a4paper, 					% Page Layout
-                     %showframe,					% This shows the frame
+                     %showframe,				% This shows the frame
                      twoside, includehead,
                      footskip=7mm, headsep=6mm,
                      top=25mm, bottom=25mm, inner=30mm, outer=25mm]{geometry}
 \usepackage{sansmathfonts}				% Sans Serif equations
 \renewcommand*\familydefault{\sfdefault} 		% Sans Serif as default font
-\usepackage{ae,aecompl} 			% Mejor Impresión
+%\usepackage{ae,aecompl} 				% Mejor Impresión
 \usepackage[utf8]{inputenc}				% Encoding of files: utf8
 \usepackage[T1]{fontenc}					% Output font encoding for international characters
 
 %\usepackage{fontspec}
 %\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7},  BoldFeatures={FontIndex=5} , ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
 
-\usepackage{titlesec}					% Redefine chapter and cahpter* titles
+\usepackage{titlesec}					% Redefine chapter and chapter* titles
 \titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
 \titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt]}]
 
@@ -65,8 +65,8 @@
 \usepackage{tikz}						% Required for title page
 \usetikzlibrary{babel}						% Required to make TikZ works with babel
 \usepackage[section]{placeins}				% To flush floats before new section
-\usepackage{longtable}				% Used by List of Symbols and friends
-\usepackage{array}				% Needed by longtable package
+\usepackage{longtable}					% Used by List of Symbols and friends
+\usepackage{array}						% Needed by longtable package
 %\nobibliography*						% To make bibliography works
 
 % User packages, packages used in this document
@@ -79,11 +79,27 @@
   Enero\or Febrero\or Marzo\or Abril\or Mayo\or Junio\or
   Julio\or Agosto\or Septiembre\or Octubre\or Noviembre\or Diciembre\fi \space\number\year
 }
+\newcommand*{\degree}[1]{\gdef\@degree{#1}}
+\newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand*{\director}[1]{\gdef\@director{#1}}
+\newcommand*{\codirector}[1]{\gdef\@codirector{#1}}
+\newcommand*{\firstEvaluator}[1]{\gdef\@firstEvaluator{#1}}
+\newcommand*{\secondEvaluator}[1]{\gdef\@secondEvaluator{#1}}
+\newcommand*{\thirdEvaluator}[1]{\gdef\@thirdEvaluator{#1}}
+\newcommand*{\copyrightYear}[1]{\gdef\@copyrightYear{#1}}
 
 % User Definitions
 \title{TÍTULO DEL TRABAJO}
+\subtitle{Subtítulo del trabajo (si lo hubiere)}
 \author{Ing. Nombre \textsc{Apellido}}
+\degree{DOCTOR EN INGENIERÍA / INGENIERÍA INFORMÁTICA}
+\director{Dr./Dra. Nombre \textsc{Apellido}}
+\codirector{Dr./Dra. Nombre \textsc{Apellido}}
+\firstEvaluator{Dr./Dra. Nombre \textsc{Apellido}}
+\secondEvaluator{Dr./Dra. Nombre \textsc{Apellido}}
+\thirdEvaluator{Dr./Dra. Nombre \textsc{Apellido}}
 \date{\fecha}
+\copyrightYear{\number\year}
 
 \frontmatter
 \begin{document}
@@ -107,23 +123,23 @@
 		\vspace{3cm}
 		\begin{center}
 			{\Huge \textbf{\@title}\par}
-			{\huge \textbf{Subtítulo del trabajo (si lo hubiere)}\par}
+			{\huge \textbf{\@subtitle}\par}
 		\end{center}
 		\vfill
 		\noindent \textbf{AUTOR:} \@author \par
 		\vspace{1cm}
-		\noindent \textbf{DIRECTOR:} Dr./Dra. Nombre \textsc{Apellido}\par
-		\noindent \textbf{CO-DIRECTOR:} Dr./Dra. Nombre \textsc{Apellido}\par	
+		\noindent \textbf{DIRECTOR:} \@director \par
+		\noindent \textbf{CO-DIRECTOR:} \@codirector \par	
 		\vspace{1cm}
 		\noindent{TESIS PRESENTADA PARA LA OBTENCIÓN DEL TÍTULO DE}\par
-		\noindent\textbf{DOCTOR EN INGENIERÍA / INGENIERÍA INFORMÁTICA}\par
+		\noindent\textbf{\@degree}\par
 		\vspace{1cm}
 		\noindent\textbf{Comité evaluador}\par
 		\begin{normalsize}		
 			\noindent%
-			\makebox[0.33\textwidth][l]{Dr./Dra. Nombre \textsc{Apellido}}
-			\makebox[0.33\textwidth][c]{Dr./Dra. Nombre \textsc{Apellido}} 
-			\makebox[0.33\textwidth][r]{Dr./Dra. Nombre \textsc{Apellido}}\par
+			\makebox[0.33\textwidth][l]{\@firstEvaluator}
+			\makebox[0.33\textwidth][c]{\@secondEvaluator} 
+			\makebox[0.33\textwidth][r]{\@thirdEvaluator}\par
 		\end{normalsize}
 		\vspace{1cm}
 		\begin{center}
@@ -140,9 +156,18 @@
 \include{preamble/resumen}
 \include{preamble/abstract}
 
-\tableofcontents 
+\tableofcontents
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
+
 \include{preamble/symbols}
 
 \mainmatter
