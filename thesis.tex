@@ -1,24 +1,47 @@
-% !TEX TS-program = LuaLaTeX
 % !TEX encoding = UTF-8 Unicode
-\documentclass[10pt]{book} 
-%\usepackage{sansmathfonts}
-\renewcommand*\familydefault{\sfdefault} 	% Only if the base font of the document is to be sans serif
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}				% Output font encoding for international characters
-%\usepackage{fontspec}
-% Font: Es diferente en Overleaf y en la PC ya que en Overleaf no está instalada la fuente (porque es paga) y hay que subir el archivo con la fuente. En una PC si la fuente Avenir está instalada se puede usar cualquier método.
-% Esto para Overleaf, índices: 0 Bold - 1 Bold it - 2 Demi Bold - 3 Demi Bold It - 4 it - 5 Medium - 6 Medium It - 7 Regular - 8 Heavy - 9 Heavy It - 10 Ultralight - 11 Ultralight It
-%\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7}, BoldFeatures={FontIndex=5}, ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
-% Esto en una PC con Windows/OSX o Linux
-%\setmainfont{Avenir Next}[ UprightFont=* Regular, ItalicFont=* Italic, BoldFont=* Medium, BoldItalicFont=* Medium Italic]
+\documentclass[11pt, a4paper, twoside, openright]{book}
 
-\usepackage{graphicx}
-%\graphicspath{ {figs/} }
-\usepackage[onehalfspacing]{setspace}
-\usepackage[a4paper, bindingoffset=0.5cm,margin=2.5cm]{geometry}
-\RequirePackage{caption} 		% Required for customising the captions
+% Setup of packages used
+\usepackage[onehalfspacing]{setspace}		% One half spacing
+\usepackage[a4paper, 					% Page Layout
+                     %showframe,					% This shows the frame
+                     twoside, includehead,
+                     footskip=7mm, headsep=6mm,
+                     top=25mm, bottom=25mm, inner=30mm, outer=25mm]{geometry}
+\usepackage{sansmathfonts}				% Sans Serif equations
+\renewcommand*\familydefault{\sfdefault} 		% Sans Serif as default font
+\usepackage[utf8]{inputenc}				% Encoding of files: utf8
+\usepackage[T1]{fontenc}					% Output font encoding for international characters
+
+%\usepackage{fontspec}
+%\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7},  BoldFeatures={FontIndex=5} , ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
+
+\usepackage{titlesec}					% Redefine chapter and cahpter* titles
+\titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
+\titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt]}]
+
+% This is used to include the page number on footer within the same margins
+%\titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt] \enlargethispage{-0.75\baselineskip}}]
+%\titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt] \enlargethispage{-0.75\baselineskip}}]
+
+\usepackage{fancyhdr}					% Redefine headers
+\pagestyle{fancy}
+\fancyhf{}								% No header nor footer
+\fancyhead[LE,RO]{\thepage}				% Left even and right odd Page Number
+\fancyhead[RE]{\textit{\leftmark}}			% Right even Section
+\fancyhead[LO]{\textit{\rightmark}}			% Left odd Chapter
+
+\fancypagestyle{plain}{					% To change the footer on chapter and chapter*
+	\fancyhf{}							% No header nor footer
+%	\fancyfoot[C]{\vspace{-11mm}\thepage}	% Footer with number displaced
+	\renewcommand{\headrulewidth}{0pt}	% No line on header
+	\renewcommand{\footrulewidth}{0pt}		% No line on footer
+}
+
+\RequirePackage{caption} 				% Caption customization
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
-\usepackage{hyperref}
+
+\usepackage{hyperref}					% Hyperlinks on pdf
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -26,113 +49,114 @@
     urlcolor=blue,
     citecolor=blue,    
 }
+
+% Setup the language and its properties (choose only one)
 \usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
-%\usepackage{fancyhdr}				% Falta configurarlo bien
+\addto\captionsspanish{\renewcommand{\contentsname}{Contenido}}
+%\usepackage[english]{babel}
+%\addto\captionsenglish{\renewcommand{\contentsname}{Contents}}
 
-\usepackage[square, numbers]{natbib}	% Bibliography
-\usepackage{tikz}					% Para poder dibujar el recuadro de la página del título
-\usetikzlibrary{babel}					% tikz no funciona con babel si no se indica
-% Agregados por el usuario
+\usepackage{graphicx}
+%\graphicspath{ {figs/} }					% Use this if custom figures folder is needed
+
 \usepackage{amssymb,amsmath}
-\usepackage[only,Yup]{stmaryrd} 		% El símbolo de la estrella
-\usepackage{bibentry} 				% Para poner las referencias en la intro
-\usepackage[section]{placeins}			% Para que termine de colocar las figuras cuando finaliza un capítulo
-\nobibliography*					% Sino no anda la bibliografía
+\usepackage[square, numbers]{natbib}		% Bibliography
+\usepackage{tikz}						% Required for title page
+\usetikzlibrary{babel}						% Required to make TikZ works with babel
+\usepackage[section]{placeins}				% To flush floats before new section
+\usepackage{longtable}				% Used by List of Symbols and friends
+\usepackage{array}				% Needed by longtable package
+%\nobibliography*						% To make bibliography works
 
-\usepackage{titlesec}
-\titleformat{\chapter}[display]{\huge}{\vspace{-1.5cm}\hfill \textbf{\chaptertitlename\ \thechapter}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt] }]
+% User packages, packages used in this document
+\usepackage{lipsum}
+\usepackage{layouts}
+\printinunitsof{mm}
 
-\titleformat{name=\chapter,numberless}[display]{\huge}{\vspace{-1.5cm}\vspace{-1ex}}{-5pt}{\huge \hfill}[{\titlerule[1.5pt]}]
-
-\newcommand\textbox[1]{%
-  \parbox{.333\textwidth}{#1}%
+% Macros provided
+\def\fecha{\ifcase\month\or
+  Enero\or Febrero\or Marzo\or Abril\or Mayo\or Junio\or
+  Julio\or Agosto\or Septiembre\or Octubre\or Noviembre\or Diciembre\fi \space\number\year
 }
+
+% User Definitions
+\title{TÍTULO DEL TRABAJO}
+\author{Ing. Nombre \textsc{Apellido}}
+\date{\fecha}
 
 \frontmatter
 \begin{document}
-%
 \begin{titlepage}
-	% Si algo hay que sacar porque no existe, ponerlo entre \phantom{...} 
-	% para que respete la ubicación de las cosas
+	\onehalfspacing
+	\enlargethispage{0.65\baselineskip}
 	\begin{tikzpicture}[remember picture, overlay]
 		\coordinate (top_right) at 
 		    ([xshift=-2.5cm, yshift=-2.5cm]current page.north east);
 		\coordinate (top_left) at 
-		    ([xshift=1.6cm, yshift=-1.6cm]current page.north west);
+		    ([xshift=2.3cm, yshift=-1.8cm]current page.north west);
 		\coordinate (bottom_right) at 
-		    ([xshift=-1.6cm, yshift=1.6cm]current page.south east);
+		    ([xshift=-1.8cm, yshift=1.8cm]current page.south east);
 		\node[inner sep=0, anchor=north east] at (top_right) {\href{http://www.itba.edu.ar}{\includegraphics[height=19mm, trim={180 200 200 200}, clip]{figs/logo_itba.png}}};
 		\draw[double, line width = 0.5pt] (top_left) rectangle (bottom_right);
 	\end{tikzpicture}
-	\onehalfspacing
 	\par
-	\begin{large}
-		\vspace{0.2cm}
+%	\begin{large}
+		\vspace{-0.1cm}
 		\noindent \textbf{DEPARTAMENTO DE INVESTIGACIÓN Y DOCTORADO}\par
 		\vspace{3cm}
 		\begin{center}
-			{\Huge \textbf{TÍTULO DEL TRABAJO}\par}
-			{\Huge \textbf{Subtítulo del trabajo (si lo hubiere)}\par}
+			{\Huge \textbf{\@title}\par}
+			{\huge \textbf{Subtítulo del trabajo (si lo hubiere)}\par}
 		\end{center}
-		\vspace{3cm}
-		\noindent \textbf{AUTOR:} Ing. Nombre \textsc{Apellido}\par
-		\vspace{0.5cm}
+		\vfill
+		\noindent \textbf{AUTOR:} \@author \par
+		\vspace{1cm}
 		\noindent \textbf{DIRECTOR:} Dr./Dra. Nombre \textsc{Apellido}\par
 		\noindent \textbf{CO-DIRECTOR:} Dr./Dra. Nombre \textsc{Apellido}\par	
-		\vspace{2cm}
+		\vspace{1cm}
 		\noindent{TESIS PRESENTADA PARA LA OBTENCIÓN DEL TÍTULO DE}\par
 		\noindent\textbf{DOCTOR EN INGENIERÍA / INGENIERÍA INFORMÁTICA}\par
-		\vspace{2cm}
+		\vspace{1cm}
 		\noindent\textbf{Comité evaluador}\par
 		\begin{normalsize}		
-			\noindent
-			\textbox{Dr./Dra. Nombre \textsc{Apellido} \hfill}
-			\textbox{\hfil Dr./Dra. Nombre \textsc{Apellido} \hfil}
-			\textbox{\hfill Dr./Dra. Nombre \textsc{Apellido} }
-		\end{normalsize}		
-		\vfill
+			\noindent%
+			\makebox[0.33\textwidth][l]{Dr./Dra. Nombre \textsc{Apellido}}
+			\makebox[0.33\textwidth][c]{Dr./Dra. Nombre \textsc{Apellido}} 
+			\makebox[0.33\textwidth][r]{Dr./Dra. Nombre \textsc{Apellido}}\par
+		\end{normalsize}
+		\vspace{1cm}
 		\begin{center}
 			\textbf{CIUDAD AUTÓNOMA DE BUENOS AIRES}\\
-			\textbf{MES, AÑO}
+			\textbf{\@date}\par
 		\end{center}
-	\end{large}
+%	\end{large}
 \end{titlepage}
 
-%\maketitle
-\tableofcontents 
-\listoffigures			% Listado de Figuras
-\listoftables			% Listado de Tablas
+% Preamble
+\include{preamble/copyright}
+\include{preamble/dedicatory}
+\include{preamble/thanks}
+\include{preamble/resumen}
+\include{preamble/abstract}
 
-\chapter*{Abreviaturas}
-\addcontentsline{toc}{chapter}{Abreviaturas}
-\begin{table}[htb] 		% Si se pasa de una hoja usar longtables
-	\large
-	\begin{tabular}{l l}
-		ITBA & \textbf{I}nstituto \textbf{T}ecnológico de \textbf{B}uenos \textbf{A}ires \\
-		MIT & \textbf{M}assachusetts \textbf{I}nstitute of \textbf{T}echnology, Instituto Tecnológico de Massachusetts \\
-		Cap. & \textbf{C}apítulo
-	\end{tabular}
-\end{table}
+\tableofcontents 
+\listoffigures
+\listoftables
+\include{preamble/symbols}
 
 \mainmatter
-%\pagestyle{fancy}
 \pagenumbering{arabic}
+
 \include{chapters/chapter1}
-\meaning\maketitle
-\\
-El de adentro:\\
-\makeatletter
-\meaning\HyOrg@maketitle
-\makeatother
 %\include{chapters/chapter2}
 %\include{chapters/chapter3}
 
-\appendix % Los próximos "chapters" son Apéndices
+\appendix % Next chapters are appendices
 \include{appendices/appendix1}
 %\include{appendices/appendix2}
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
-\addcontentsline{toc}{chapter}{\bibname}    %Agrega bibliografía al índice
+\addcontentsline{toc}{chapter}{\bibname}    %To include the bibliography in the toc
 
 \end{document}  
