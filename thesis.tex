@@ -1,6 +1,10 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[11pt, a4paper, twoside, openright]{book}
 
+\newif\ifAvenir
+% If \Avenirtrue exist, use LuaLatex or Xelatex otherwise pdfLatex could be used and default to SS
+%\Avenirtrue
+
 % Setup of packages used
 \usepackage[onehalfspacing]{setspace}		% One half spacing
 \usepackage[a4paper, 					% Page Layout
@@ -9,13 +13,19 @@
                      footskip=7mm, headsep=6mm,
                      top=25mm, bottom=25mm, inner=30mm, outer=25mm]{geometry}
 \usepackage{sansmathfonts}				% Sans Serif equations
-\renewcommand*\familydefault{\sfdefault} 		% Sans Serif as default font
-%\usepackage{ae,aecompl} 				% Mejor Impresión
-\usepackage[utf8]{inputenc}				% Encoding of files: utf8
 \usepackage[T1]{fontenc}					% Output font encoding for international characters
 
-%\usepackage{fontspec}
-%\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7},  BoldFeatures={FontIndex=5} , ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
+\ifAvenir
+	\usepackage{fontspec}
+	% This requieres avenirnext.ttc
+	\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7}, BoldFeatures={FontIndex=5}, ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
+	% This use the installed font
+	%\setmainfont{Avenir Next}[ UprightFont=* Regular, ItalicFont=* Italic, BoldFont=* Medium, BoldItalicFont=* Medium Italic]
+\else
+	\usepackage[utf8]{inputenc}			% Encoding of files: utf8
+	\renewcommand*\familydefault{\sfdefault} 	% Sans Serif as default font
+	%\usepackage{ae,aecompl} 			% Mejor Impresión
+\fi
 
 \usepackage{titlesec}					% Redefine chapter and chapter* titles
 \titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
@@ -67,12 +77,6 @@
 \usepackage[section]{placeins}				% To flush floats before new section
 \usepackage{longtable}					% Used by List of Symbols and friends
 \usepackage{array}						% Needed by longtable package
-%\nobibliography*						% To make bibliography works
-
-% User packages, packages used in this document
-\usepackage{lipsum}
-\usepackage{layouts}
-\printinunitsof{mm}
 
 % Macros provided
 \def\fecha{\ifcase\month\or
@@ -88,18 +92,8 @@
 \newcommand*{\thirdEvaluator}[1]{\gdef\@thirdEvaluator{#1}}
 \newcommand*{\copyrightYear}[1]{\gdef\@copyrightYear{#1}}
 
-% User Definitions
-\title{TÍTULO DEL TRABAJO}
-\subtitle{Subtítulo del trabajo (si lo hubiere)}
-\author{Ing. Nombre \textsc{Apellido}}
-\degree{DOCTOR EN INGENIERÍA / INGENIERÍA INFORMÁTICA}
-\director{Dr./Dra. Nombre \textsc{Apellido}}
-\codirector{Dr./Dra. Nombre \textsc{Apellido}}
-\firstEvaluator{Dr./Dra. Nombre \textsc{Apellido}}
-\secondEvaluator{Dr./Dra. Nombre \textsc{Apellido}}
-\thirdEvaluator{Dr./Dra. Nombre \textsc{Apellido}}
-\date{\fecha}
-\copyrightYear{\number\year}
+\input{user_packages.tex}					% User packages
+\input{preamble/title_data.tex}				% Title data
 
 \frontmatter
 \begin{document}
@@ -173,13 +167,10 @@
 \mainmatter
 \pagenumbering{arabic}
 
-\include{chapters/chapter1}
-%\include{chapters/chapter2}
-%\include{chapters/chapter3}
+\input{chapters/chapters_list.tex}
 
 \appendix % Next chapters are appendices
-\include{appendices/appendix1}
-%\include{appendices/appendix2}
+\input{appendices/appendices_list.tex}
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
