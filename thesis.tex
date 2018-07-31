@@ -35,12 +35,12 @@
 %\titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt] \enlargethispage{-0.75\baselineskip}}]
 %\titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt] \enlargethispage{-0.75\baselineskip}}]
 
-\usepackage{fancyhdr}					% Redefine headers
-\pagestyle{fancy}
+\usepackage{fancyhdr}					% Package to redefine headers
 \fancyhf{}								% No header nor footer
 \fancyhead[LE,RO]{\thepage}				% Left even and right odd Page Number
-\fancyhead[RE]{\textit{\leftmark}}			% Right even Section
-\fancyhead[LO]{\textit{\rightmark}}			% Left odd Chapter
+\fancyhead[RE]{\nouppercase{\leftmark}}		% Right even Section
+\fancyhead[LO]{\nouppercase{\rightmark}}		% Left odd Chapter
+\pagestyle{fancy}
 
 \fancypagestyle{plain}{					% To change the footer on chapter and chapter*
 	\fancyhf{}							% No header nor footer
