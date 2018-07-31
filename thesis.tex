@@ -7,10 +7,13 @@
 
 % Setup of packages used
 \usepackage[onehalfspacing]{setspace}		% One half spacing
+\newlength{\stockheight}					% To prevent hyperref warning
+\setlength{\stockheight}{\paperheight}		% define \stockheigh
+\usepackage{hyperref}					% Hyperlinks on pdf (Should be called before Geometry)
 \usepackage[a4paper, 					% Page Layout
                      %showframe,				% This shows the frame
                      twoside, includehead,
-                     footskip=7mm, headsep=6mm,
+                     footskip=7mm, headsep=6mm, headheight=5mm,
                      top=25mm, bottom=25mm, inner=30mm, outer=25mm]{geometry}
 \usepackage{sansmathfonts}				% Sans Serif equations
 \usepackage[T1]{fontenc}					% Output font encoding for international characters
@@ -52,7 +55,6 @@
 \RequirePackage{caption} 				% Caption customization
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
 
-\usepackage{hyperref}					% Hyperlinks on pdf
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
