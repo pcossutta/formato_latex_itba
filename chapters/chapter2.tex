@@ -1,0 +1,35 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root = ../thesis.tex
+\chapter{Manejo Formato en \LaTeX } \label{LatexFiles}
+
+En este capítulo se dan instrucciones generales para el manejo del formato en \LaTeX. El formato consta de diferentes archivos, que serán detallados a continuación. 
+
+\section{Lista de Archivos}
+
+Los archivos \textit{thesis.tex}, \textit{copyright.tex}, \textit{engcopyright.tex} y \textit{EnglishCover.tex} corresponden a la configuración y estructura del formato del documento, y no deberían ser modificados por el usuario. En la Tabla~\ref{tab:UserFiles} se presentan la ubicación, nombre y contenido de cada archivo modificable por el usuario, donde será incluido el contenido de la tesis.
+
+\begin{table}[ht]
+\renewcommand{\arraystretch}{1.3}
+    \centering
+    \begin{tabular}{>{\centering}p{0.13\textwidth}p{0.16\textwidth}p{0.65\textwidth}} \hline  
+    \textbf{Carpeta}  & \textbf{Archivo} & \textbf{Contenido} \\ \hline 
+        & \textit{bibliography.bib} & Archivo de base de datos de las referencias bibliográficas.  \\ \hline
+    \multirow{6}{*}{preamble} & \textit{abstract } &  Resumen en inglés de la tesis \\ 
+     & \textit{dedicatory} & Dedicatoria \\  
+     & \textit{resumen} & Resumen en castellano de la tesis \\  
+     & \textit{thanks} & Agradecimientos \\  
+     & \textit{title\_data} & Información para la carátula de la tesis: título, autor(a), director(a), codirector(a) y jurado \\ 
+     & \textit{user\_packages} & Incluir paquetes específicos requeridos por el usuario. Los paquetes \textit{graphix, array, longtable} y \textit{amsmath} ya están incluidos en el formato. \\ \hline
+     \multirow{2}{*}{chapters} & \textit{chapter1} &  Contenido del capítulo \\ 
+    & \textit{chapters\_list} & Lista de capítulos a incluir en el documento. \\ \hline
+    \multirow{2}{*}{appendices} & \textit{appendices\_list} &  Lista de apéndices a incluir en el documento. \\ 
+    & \textit{appendix1} & Contenido del apéndice \\ \hline
+     figs & \textit{chapter1} &  Carpeta para incluir las imágenes para el capítulo 1 \\ \hline
+    \end{tabular}
+    \caption{Archivos modificables por el autor}
+    \label{tab:UserFiles}
+\end{table}
+
+Para quitar la portada en inglés en \LaTeX, desactive la línea \verb!\input{preamble/EnglishCover.tex}! en el archivo \textit{thesis.tex}
+
+Dentro del documento, las referencias se utilizarán con estilo APA o IEEE. Para elegir el estilo, al final del archivo \textit{thesis.tex}, modifique la línea \verb!\bibliographystyle{ }! con \verb!ieeetr! para el estilo IEEE, o \verb!apalike! para APA.

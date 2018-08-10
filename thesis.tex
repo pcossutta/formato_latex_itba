@@ -1,10 +1,6 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[11pt, a4paper, twoside, openright]{book}
 
-\newif\ifAvenir
-% If \Avenirtrue exist, use LuaLatex or Xelatex otherwise pdfLatex could be used and default to SS
-%\Avenirtrue
-
 % Setup of packages used
 \usepackage[onehalfspacing]{setspace}		% One half spacing
 \newlength{\stockheight}					% To prevent hyperref warning
@@ -14,21 +10,13 @@
                      %showframe,				% This shows the frame
                      twoside, includehead,
                      footskip=7mm, headsep=6mm, headheight=4.8mm,
+                     marginparsep=2mm, marginparwidth=22mm,
                      top=25mm, bottom=25mm, inner=30mm, outer=25mm]{geometry}
 \usepackage{sansmathfonts}				% Sans Serif equations
 \usepackage[T1]{fontenc}					% Output font encoding for international characters
 
-\ifAvenir
-	\usepackage{fontspec}
-	% This requieres avenirnext.ttc
-	\setmainfont{avenirnext.ttc}[UprightFeatures={FontIndex=7}, BoldFeatures={FontIndex=5}, ItalicFeatures={FontIndex=4}, BoldItalicFeatures={FontIndex=6}]
-	% This use the installed font
-	%\setmainfont{Avenir Next}[ UprightFont=* Regular, ItalicFont=* Italic, BoldFont=* Medium, BoldItalicFont=* Medium Italic]
-\else
-	\usepackage[utf8]{inputenc}			% Encoding of files: utf8
-	\renewcommand*\familydefault{\sfdefault} 	% Sans Serif as default font
-	%\usepackage{ae,aecompl} 			% Mejor Impresión
-\fi
+\usepackage[utf8]{inputenc}			% Encoding of files: utf8
+\renewcommand*\familydefault{\sfdefault} 	% Sans Serif as default font
 
 \usepackage{titlesec}					% Redefine chapter and chapter* titles
 \titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
@@ -69,7 +57,7 @@
 %\usepackage[english]{babel}
 %\addto\captionsenglish{\renewcommand{\contentsname}{Contents}}
 
-\usepackage{graphicx}
+
 %\graphicspath{ {figs/} }					% Use this if custom figures folder is needed
 
 \usepackage{amssymb,amsmath}
@@ -79,6 +67,7 @@
 \usepackage[section]{placeins}				% To flush floats before new section
 \usepackage{longtable}					% Used by List of Symbols and friends
 \usepackage{array}						% Needed by longtable package
+\usepackage{graphicx}
 
 % Macros provided
 \def\fecha{\ifcase\month\or
@@ -94,7 +83,15 @@
 \newcommand*{\thirdEvaluator}[1]{\gdef\@thirdEvaluator{#1}}
 \newcommand*{\copyrightYear}[1]{\gdef\@copyrightYear{#1}}
 
-\input{user_packages.tex}					% User packages
+\def\edate{\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi \space\number\year
+}
+\newcommand*{\engtitle}[1]{\gdef\@engtitle{#1}}
+\newcommand*{\engsubtitle}[1]{\gdef\@engsubtitle{#1}}
+\newcommand*{\engdate}[1]{\gdef\@engdate{#1}}
+
+\input{preamble/user_packages.tex}					% User packages
 \input{preamble/title_data.tex}				% Title data
 
 \frontmatter
@@ -127,10 +124,10 @@
 		\noindent \textbf{DIRECTOR:} \@director \par
 		\noindent \textbf{CO-DIRECTOR:} \@codirector \par	
 		\vspace{1cm}
-		\noindent{TESIS PRESENTADA PARA LA OBTENCIÓN DEL TÍTULO DE}\par
+		\noindent{TESIS PRESENTADA PARA OPTAR AL TÍTULO DE}\par
 		\noindent\textbf{\@degree}\par
 		\vspace{1cm}
-		\noindent\textbf{Comité evaluador}\par
+		\noindent\textbf{Jurado}\par
 		\begin{normalsize}		
 			\noindent%
 			\makebox[0.33\textwidth][l]{\@firstEvaluator}
@@ -144,9 +141,11 @@
 		\end{center}
 %	\end{large}
 \end{titlepage}
+\include{preamble/copyright}
+
+\input{preamble/EnglishCover.tex} %% ELIMINAR SI LA TESIS ESTA ESCRITA EN CASTELLANO
 
 % Preamble
-\include{preamble/copyright}
 \include{preamble/dedicatory}
 \include{preamble/thanks}
 \include{preamble/resumen}
@@ -174,7 +173,8 @@
 \appendix % Next chapters are appendices
 \input{appendices/appendices_list.tex}
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{ieeetr} % for IEEE
+%\bibliographystyle{apalike} % for APA
 \bibliography{bibliography}
 \addcontentsline{toc}{chapter}{\bibname}    %To include the bibliography in the toc
 
