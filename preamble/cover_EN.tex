@@ -1,0 +1,50 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root = ../thesis.tex
+\makeatletter
+\begin{titlepage}
+	\onehalfspacing
+	\enlargethispage{0.65\baselineskip}
+	\begin{tikzpicture}[remember picture, overlay]
+		\coordinate (top_right) at 
+		    ([xshift=-2.5cm, yshift=-2.5cm]current page.north east);
+		\coordinate (top_left) at 
+		    ([xshift=2.3cm, yshift=-1.8cm]current page.north west);
+		\coordinate (bottom_right) at 
+		    ([xshift=-1.8cm, yshift=1.8cm]current page.south east);
+		\node[inner sep=0, anchor=north east] at (top_right) {\href{http://www.itba.edu.ar}{\includegraphics[height=19mm, trim={180 200 200 200}, clip]{figs/logo_itba.png}}};
+		\draw[double, line width = 0.5pt] (top_left) rectangle (bottom_right);
+	\end{tikzpicture}
+	\par
+%	\begin{large}
+		\vspace{-0.1cm}
+		\noindent \textbf{DEPARTAMENTO DE INVESTIGACIÓN Y DOCTORADO}\par
+		\vspace{3cm}
+		\begin{center}
+			{\Huge \textbf{\@titleEN}\par}
+			{\huge \textbf{\@subtitleEN}\par}
+		\end{center}
+		\vfill
+		\noindent \textbf{AUTHOR:} \@author \par
+		\vspace{1cm}
+		\noindent \textbf{ADVISOR:} \@director \par
+		\noindent \textbf{CO-ADVISOR:} \@codirector \par	
+		\vspace{1cm}
+		\noindent{A THESIS SUBMITTED AS A REQUIREMENT FOR THE DEGREE OF}\par
+		\noindent\textbf{\@degree}\par
+		\vspace{1cm}
+		\noindent\textbf{Jurado}\par
+		\begin{normalsize}		
+			\noindent%
+			\makebox[0.33\textwidth][l]{\@firstEvaluator}
+			\makebox[0.33\textwidth][c]{\@secondEvaluator} 
+			\makebox[0.33\textwidth][r]{\@thirdEvaluator}\par
+		\end{normalsize}
+		\vspace{1cm}
+		\begin{center}
+			\textbf{CIUDAD AUTÓNOMA DE BUENOS AIRES}\\
+			\textbf{\@dateEN}\par
+		\end{center}
+%	\end{large}
+\end{titlepage}
+\include{preamble/copyright_EN}
+\makeatother

@@ -15,10 +15,10 @@
 \usepackage{sansmathfonts}				% Sans Serif equations
 \usepackage[T1]{fontenc}					% Output font encoding for international characters
 
-\usepackage[utf8]{inputenc}			% Encoding of files: utf8
+\usepackage[utf8]{inputenc}				% Encoding of files: utf8
 \renewcommand*\familydefault{\sfdefault} 	% Sans Serif as default font
 
-\usepackage{titlesec}					% Redefine chapter and chapter* titles
+\usepackage{titlesec}						% Redefine chapter and chapter* titles
 \titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
 \titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt]}]
 
@@ -57,12 +57,11 @@
 %\usepackage[english]{babel}
 %\addto\captionsenglish{\renewcommand{\contentsname}{Contents}}
 
-
 %\graphicspath{ {figs/} }					% Use this if custom figures folder is needed
 
 \usepackage{amssymb,amsmath}
 \usepackage[square, numbers]{natbib}		% Bibliography
-\usepackage{tikz}						% Required for title page
+\usepackage{tikz}							% Required for title page
 \usetikzlibrary{babel}						% Required to make TikZ works with babel
 \usepackage[section]{placeins}				% To flush floats before new section
 \usepackage{longtable}					% Used by List of Symbols and friends
@@ -74,6 +73,13 @@
   Enero\or Febrero\or Marzo\or Abril\or Mayo\or Junio\or
   Julio\or Agosto\or Septiembre\or Octubre\or Noviembre\or Diciembre\fi \space\number\year
 }
+
+\def\edate{\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi \space\number\year
+}
+
+\makeatletter
 \newcommand*{\degree}[1]{\gdef\@degree{#1}}
 \newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
 \newcommand*{\director}[1]{\gdef\@director{#1}}
@@ -82,68 +88,19 @@
 \newcommand*{\secondEvaluator}[1]{\gdef\@secondEvaluator{#1}}
 \newcommand*{\thirdEvaluator}[1]{\gdef\@thirdEvaluator{#1}}
 \newcommand*{\copyrightYear}[1]{\gdef\@copyrightYear{#1}}
+\newcommand*{\titleEN}[1]{\gdef\@titleEN{#1}}
+\newcommand*{\subtitleEN}[1]{\gdef\@subtitleEN{#1}}
+\newcommand*{\dateEN}[1]{\gdef\@dateEN{#1}}
+\makeatother
 
-\def\edate{\ifcase\month\or
-  January\or February\or March\or April\or May\or June\or
-  July\or August\or September\or October\or November\or December\fi \space\number\year
-}
-\newcommand*{\engtitle}[1]{\gdef\@engtitle{#1}}
-\newcommand*{\engsubtitle}[1]{\gdef\@engsubtitle{#1}}
-\newcommand*{\engdate}[1]{\gdef\@engdate{#1}}
-
-\input{preamble/user_packages.tex}					% User packages
+\input{preamble/user_packages.tex}		% User packages
 \input{preamble/title_data.tex}				% Title data
 
 \frontmatter
 \begin{document}
-\begin{titlepage}
-	\onehalfspacing
-	\enlargethispage{0.65\baselineskip}
-	\begin{tikzpicture}[remember picture, overlay]
-		\coordinate (top_right) at 
-		    ([xshift=-2.5cm, yshift=-2.5cm]current page.north east);
-		\coordinate (top_left) at 
-		    ([xshift=2.3cm, yshift=-1.8cm]current page.north west);
-		\coordinate (bottom_right) at 
-		    ([xshift=-1.8cm, yshift=1.8cm]current page.south east);
-		\node[inner sep=0, anchor=north east] at (top_right) {\href{http://www.itba.edu.ar}{\includegraphics[height=19mm, trim={180 200 200 200}, clip]{figs/logo_itba.png}}};
-		\draw[double, line width = 0.5pt] (top_left) rectangle (bottom_right);
-	\end{tikzpicture}
-	\par
-%	\begin{large}
-		\vspace{-0.1cm}
-		\noindent \textbf{DEPARTAMENTO DE INVESTIGACIÓN Y DOCTORADO}\par
-		\vspace{3cm}
-		\begin{center}
-			{\Huge \textbf{\@title}\par}
-			{\huge \textbf{\@subtitle}\par}
-		\end{center}
-		\vfill
-		\noindent \textbf{AUTOR:} \@author \par
-		\vspace{1cm}
-		\noindent \textbf{DIRECTOR:} \@director \par
-		\noindent \textbf{CO-DIRECTOR:} \@codirector \par	
-		\vspace{1cm}
-		\noindent{TESIS PRESENTADA PARA OPTAR AL TÍTULO DE}\par
-		\noindent\textbf{\@degree}\par
-		\vspace{1cm}
-		\noindent\textbf{Jurado}\par
-		\begin{normalsize}		
-			\noindent%
-			\makebox[0.33\textwidth][l]{\@firstEvaluator}
-			\makebox[0.33\textwidth][c]{\@secondEvaluator} 
-			\makebox[0.33\textwidth][r]{\@thirdEvaluator}\par
-		\end{normalsize}
-		\vspace{1cm}
-		\begin{center}
-			\textbf{CIUDAD AUTÓNOMA DE BUENOS AIRES}\\
-			\textbf{\@date}\par
-		\end{center}
-%	\end{large}
-\end{titlepage}
-\include{preamble/copyright}
 
-\input{preamble/EnglishCover.tex} %% ELIMINAR SI LA TESIS ESTA ESCRITA EN CASTELLANO
+\input{preamble/cover.tex}
+\input{preamble/cover_EN.tex} %% ELIMINAR SI LA TESIS ESTA ESCRITA EN CASTELLANO
 
 % Preamble
 \include{preamble/dedicatory}
